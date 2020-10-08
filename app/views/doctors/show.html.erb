@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Имя:</strong>
+  <%= @doctor.name %>
+</p>
+
+<h1>Категория доктора</h1>
+<%= @doctor.category.name %>
+
+<%= link_to "Назад", doctors_path %>
