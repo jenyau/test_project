@@ -1,0 +1,21 @@
+<%= form_with(model: @doctor, local: true) do |form| %>
+
+  <%= render 'common/errors', resource: @doctor %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <p><div class="field">
+    <%= form.label :category %>
+    <%= form.collection_select :category_id, Category.all, :id, :name %>
+  </div></p>
+
+  <p>
+    <div class="actions">
+      <%= form.submit "#{ @doctor.new_record? ? 'Создать' : 'Изменить' }" %>
+    </div>
+  </p>
+
+<% end %>
