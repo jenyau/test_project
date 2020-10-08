@@ -1,0 +1,15 @@
+<%= form_with(model: @user, local: true) do |form| %>
+
+  <%= render 'common/errors', resource: @user %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <p>
+    <div class="actions">
+      <%= form.submit "#{ @user.new_record? ? 'Создать' : 'Изменить' }" %>
+    </div>
+  </p>
+
+<% end %>
