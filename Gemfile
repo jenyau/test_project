@@ -10,6 +10,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 
 gem 'devise'
 gem "administrate"
+gem 'bootstrap'
+gem 'jquery-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.1'

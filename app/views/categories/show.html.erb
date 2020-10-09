@@ -1,6 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+  <strong>Категория: <%= @category.name %></strong>
 
-<p>
-  <strong>Название:</strong>
-  <%= @category.name %>
-</p>
+  </div>
+</div>
+<h4>Доктора:</h4>
+
+<% @category.doctors.each do |doctor| %>
+  <%= link_to "#{doctor.name}", doctor_path(doctor) %>
+  <% if current_user.present? %>
+    <%= form_with(model: Appointment.new, local: true) do |form| %>
+    <%= form.hidden_field :user_id, :value=>current_user.id %>
+      <%= form.hidden_field :doctor_id, :value=>doctor.id %>
+      <%= form.submit "Записаться"%>
+    <% end %>
+  <% end %>
+<br><br>
+<% end %>
+
+<%= link_to "Назад", root_path %>
