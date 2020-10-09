@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <% if current_user.present? %>
+      <%= link_to "Выйти", destroy_user_session_path, method: :delete  %>
+    <% elsif current_doctor.present? %>
+      <%= link_to "Выйти", destroy_doctor_session_path, method: :delete%>
+    <% else %>
+        <%= link_to "Войти", new_user_session_path %>
+        <%= link_to "Войти как доктор", new_doctor_session_path %>
+    <% end %>
+<h1><%= current_doctor.present? %></h1>
+
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

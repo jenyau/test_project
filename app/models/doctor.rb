@@ -1,5 +1,11 @@
 class Doctor < ApplicationRecord
-  belongs_to :category
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :validatable
+  devise :database_authenticatable, :registerable,
+         :recoverable
+
+
+  belongs_to :category, optional: true
   validates_uniqueness_of :name, :scope => :category_id
 
   has_many :appointments
