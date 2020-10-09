@@ -4,6 +4,13 @@
   <strong>Имя:</strong>
   <%= @doctor.email %>
 </p>
-
+<p>
 <h1>Категория доктора</h1>
 <%= @doctor.category.name if @doctor.category.present? %>
+</p>
+<p>
+<h1>Открытые записи</h1>
+<% @doctor.appointments.each do |appointment| %>
+  <%= appointment.user.name %><br>
+<% end %>
+</p>
