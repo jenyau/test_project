@@ -1,0 +1,6 @@
+<tr>
+  <td><%= appointment.doctor.name %> - <%= appointment.user.name %></td>
+  <td><%= link_to 'Показать', appointment %></td>
+  <td><%= link_to 'Редактировать', edit_appointment_path(appointment) %></td>
+  <td><%= link_to 'Удалить', appointment, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+</tr>

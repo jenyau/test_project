@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Доктор:</strong>
+  <%= @appointment.doctor.name %>
+</p>
+<p>
+  <strong>Пользователь:</strong>
+  <%= @appointment.user.name %>
+</p>
+<strong>Статус: </strong>
+<%= @appointment.status ? "Запись открыта" : "Запись закрыта" %>
+
+<div>
+  <h3>Рекомендации:</h3>
+  <% if @appointment.recommendation.present? %>
+    <%= @appointment.recommendation %>
+  <% else %>
+    <div class="field">
+      <%= form_with(model: @appointment, local: true) do |form| %>
+        <%= form.label :recommendation, "Рекомендации" %>
+           <div class="field">
+    <%= form.label :recommendation, "Рекомендации" %>
+    <%= form.text_area :recommendation,
+                  :rows => 13,
+                  :cols => 50 ,
+                  :maxlength => 240,
+                  :autocomplete => :off %>
+  </div>
+  <br><br>
+        <% @appointment.status = false %>
+        <%= form.hidden_field :status, :value=> @appointment.status %>
+        <%= form.submit "Добавить" %>
+      <% end %>
+  </div>
+  <% end %>
+
+</div>
+<p></p>
+
+<%= link_to "Назад", appointments_path %>
