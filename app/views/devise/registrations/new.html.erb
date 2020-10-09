@@ -30,6 +30,12 @@
     <%= f.text_field :name %>
   </div>
 
+  <p>
+  <div class="field">
+    <%= f.label :image, "Загрузить фото" %><br>
+    <%= f.file_field :image %>
+  </div>
+  </p>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
