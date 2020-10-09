@@ -2,10 +2,10 @@
 
 <p>
   <strong>Имя:</strong>
-  <%= @doctor.name %>
+  <%= @doctor.email %>
 </p>
 
 <h1>Категория доктора</h1>
-<%= @doctor.category.name %>
+<%= @doctor.category.name if @doctor.category.present? %>
 
 <%= link_to "Назад", doctors_path %>
