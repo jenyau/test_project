@@ -4,3 +4,5 @@
   <strong>Имя:</strong>
   <%= @user.phone_number %>
 </p>
+
+<%= image_tag @user.image.url(:thumb), :class=> "img-show" %>

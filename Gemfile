@@ -12,7 +12,8 @@ gem 'devise'
 gem "administrate"
 gem 'bootstrap'
 gem 'jquery-rails'
-
+gem 'carrierwave', '~> 2.0'
+gem "mini_magick"
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

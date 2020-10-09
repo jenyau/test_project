@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :authentication_keys => [:phone_number]
   has_many :appointments
   has_many :doctors, through: :appointments
+
+  mount_uploader :image, ImageUploader
 end
