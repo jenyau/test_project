@@ -1,6 +1,12 @@
 <h1>Добро пожаловать в наше приложение</h1>
 
-<p><%= link_to "Доктора", doctors_path %></p>
 <p><%= link_to "Войти как доктор", new_doctor_session_path %></p>
-<p><%= link_to "Войти", new_user_session_path %></p>
+<p><%= link_to "Войти", new_user_session_path, :class=>"btn btn-info" %></p>
 
+<h4>Список всех докторов</h4>
+<p><%= link_to "Доктора", doctors_path %></p>
+
+<h4>Выбор доктора по категории</h4>
+<% Category.all.each do |category| %>
+  <%= link_to "#{category.name}", category_path(category) %><br>
+<% end %>

@@ -11,29 +11,31 @@
 <strong>Статус: </strong>
 <%= @appointment.status ? "Запись открыта" : "Запись закрыта" %>
 
-<div>
   <h3>Рекомендации:</h3>
+
   <% if @appointment.recommendation.present? %>
     <%= @appointment.recommendation %>
   <% else %>
-    <div class="field">
-      <%= form_with(model: @appointment, local: true) do |form| %>
-        <%= form.label :recommendation, "Рекомендации" %>
-           <div class="field">
-    <%= form.label :recommendation, "Рекомендации" %>
-    <%= form.text_area :recommendation,
-                  :rows => 13,
-                  :cols => 50 ,
-                  :maxlength => 240,
-                  :autocomplete => :off %>
-  </div>
-  <br><br>
-        <% @appointment.status = false %>
-        <%= form.hidden_field :status, :value=> @appointment.status %>
-        <%= form.submit "Добавить" %>
-      <% end %>
-  </div>
+  <p>Пока нет никаких рекомендаций</p>
   <% end %>
 
-</div>
-<p></p>
+
+<% if current_doctor.present? %>
+  <div class="field">
+    <%= form_with(model: @appointment, local: true) do |form| %>
+      <%= form.label :recommendation, "Рекомендации" %>
+      <div class="field">
+        <%= form.label :recommendation, "Рекомендации" %>
+        <%= form.text_area :recommendation,
+          :rows => 13,
+          :cols => 50 ,
+          :maxlength => 240,
+          :autocomplete => :off %>
+      </div>
+      <br><br>
+      <% @appointment.status = false %>
+      <%= form.hidden_field :status, :value=> @appointment.status %>
+      <%= form.submit "Добавить" %>
+    <% end %>
+  </div>
+<% end %>

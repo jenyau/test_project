@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     end
   devise_for :doctors
   devise_for :users
-  resources :categories, only: [:show]
+  resources :categories, only: [:show, :index]
   resources :doctors, only: [:show, :index]
   resources :users, only: [:show]
-  resources :appointments, only: [:show]
+  resources :appointments, only: [:show, :new, :create, :update]
 
   root 'welcome#index'
 end
