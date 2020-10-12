@@ -1,6 +1,6 @@
 <tr>
   <td><%= category.name %></td>
   <td><%= link_to 'Показать', category %></td>
-  <td><%= link_to 'Редактировать', edit_category_path(category) %></td>
-  <td><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+  <% if can? :update, category %><td><%= link_to 'Редактировать', edit_admin_category_path(category) %></td> | <%end%>
+  <% if can? :destroy, category %><td><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Вы уверены?' } %></td> | <%end%>
 </tr>

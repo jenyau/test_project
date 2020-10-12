@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :doctors
+  devise_for :users
+
   namespace :admin do
       resources :doctors
       resources :users
@@ -7,8 +10,7 @@ Rails.application.routes.draw do
 
       root to: "doctors#index"
     end
-  devise_for :doctors
-  devise_for :users
+
   resources :categories, only: [:show, :index]
   resources :doctors, only: [:show, :index]
   resources :users, only: [:show]

@@ -11,6 +11,15 @@
 <p>
 <h1>Открытые записи</h1>
 <% @doctor.appointments.each do |appointment| %>
-  <%= appointment.user.name %><br>
+  <%= link_to "#{appointment.user.name}", appointment_path(appointment) %><br>
 <% end %>
+
+<% if current_user.present? %>
+  <%= form_with(model: Appointment.new, local: true) do |form| %>
+  <%= form.hidden_field :user_id, :value=> current_user.id %>
+    <%= form.hidden_field :doctor_id, :value=> @doctor.id %>
+    <%= form.submit "Записаться на прием"%>
+  <% end %>
+<% end %>
+
 </p>
