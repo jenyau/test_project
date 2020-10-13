@@ -7,20 +7,20 @@
     </div>
     <% unless current_user.present? || current_doctor.present? %>
     <div class="col-md-3">
-      <%= link_to "Войти как пользователь", new_user_session_path, :class=>"btn btn-success" %>
+      <%= link_to "Войти как пользователь", new_user_session_path, class:"btn btn-success" %>
     </div>
     <div class="col-md-2">
-      <%= link_to "Войти как доктор", new_doctor_session_path, :class=>"btn btn-danger" %><br>
+      <%= link_to "Войти как доктор", new_doctor_session_path, class: "btn btn-danger" %><br>
     </div>
     <% end %>
     <br><br><br>
     <div class="col-md-12">
       <h2>Выбор доктора по категории:</h2>
       <% Category.all.each do |category| %>
-        <%= link_to "#{category.name}", category_path(category), :class=> "btn btn-info" %>
+        <%= link_to "#{category.name}", category_path(category), class: "btn btn-info" %>
       <% end %>
       <br><br>
-      <h4><%= link_to "Список всех докторов", doctors_path, :class=>"btn btn-warning" %></h4>
+      <h4><%= link_to "Список всех докторов", doctors_path, class: "btn btn-warning" %></h4>
     </div>
   </div>
 </div>

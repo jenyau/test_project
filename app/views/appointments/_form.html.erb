@@ -6,12 +6,12 @@
 
       <p><div class="form-group">
         <%= form.label :user %>
-        <%= form.collection_select :user_id, User.all, :id, :name, {}, {:class=> "form-control"} %>
+        <%= form.collection_select :user_id, User.all, :id, :name, {}, {class: "form-control"} %>
       </div></p>
 
       <p><div class="form-group">
         <%= form.label :doctor %>
-        <%= form.collection_select :doctor_id, Doctor.all, :id, :name, {}, {:class=> "form-control"} %>
+        <%= form.collection_select :doctor_id, Doctor.all, :id, :name, {}, {class: "form-control"} %>
       </div></p>
 
       <p>
@@ -19,10 +19,10 @@
           <div class="field">
             <%= form.label :recommendation, "Описание" %>
             <%= form.text_area :recommendation,
-                      :rows => 13,
-                      :cols => 50 ,
-                      :maxlength => 240,
-                      :autocomplete => :off, class:"form-control" %>
+                      rows: 13,
+                      cols: 50 ,
+                      maxlength: 240,
+                      autocomplete: :off, class:"form-control" %>
           </div>
         <% else %>
           <% @appointment.status = true %>

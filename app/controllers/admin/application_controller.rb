@@ -12,9 +12,9 @@ module Admin
 
   def authenticate_admin
     if current_user.present?
-      redirect_to root_path, alert: "У вас нет доступа к этой странице" unless current_user.admin?
+      redirect_to root_path, alert: "You do not have access to this page" unless current_user.admin?
     else
-      redirect_to root_path, alert: "У вас нет доступа к этой странице"
+      redirect_to root_path, alert: "You do not have access to this page"
     end
   end
     # def authenticate_admin

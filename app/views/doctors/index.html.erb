@@ -1,11 +1,20 @@
+<h1 class="text-center">Список докторов</h1>
 <div class="container">
-  <div class="bg-light text-center">
-    <h1>Список докторов</h1>
-  </div>
-  <hr>
-  <br><br>
   <div class="row">
-    <%= render @doctors %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Ф.И.О</th>
+          <th></th>
+        </tr>
+      </thead>
+    <tbody>
+
+        <%= render @doctors %>
+
+      </tbody>
+    </table>
   </div>
   <%= link_to "Назад", root_path, class: "btn btn-primary"%>
-</div>
+</div>>
+

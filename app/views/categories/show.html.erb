@@ -2,18 +2,30 @@
   <h1 class="text-center">Категория: <%= @category.name %></h1>
   <h2>Список докторов</h2>
 
-  <% @category.doctors.each do |doctor| %>
-    <h4><%= link_to "#{doctor.name}", doctor_path(doctor), class: "btn btn-light" %></h4>
-    <% if current_user.present? %>
-      <%= form_with(model: Appointment.new, local: true) do |form| %>
-      <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.hidden_field :doctor_id, value: doctor.id %>
-        <%= form.submit "Записаться", class: "btn btn-success"%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th>Ф.И.О</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @category.doctors.each do |doctor| %>
+        <tr>
+          <td><%= link_to "#{doctor.name}", doctor_path(doctor), class: "btn btn-light" %></td>
+          <td>
+            <% if current_user.present? %>
+            <%= form_with(model: Appointment.new, local: true) do |form| %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :doctor_id, value: doctor.id %>
+            <%= form.submit "Записаться", class: "btn btn-success"%>
+            <% end %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    <% end %>
-  <br>
-  <% end %>
-
+    </tbody>
+  </table>
   <%= link_to "Назад", root_path, class: "btn btn-primary" %>
 </div>
 
