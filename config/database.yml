@@ -81,28 +81,25 @@
 #   database: test_project_test
 
 
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  timeout: 5000
+  username: jenya
+  password: jenya
 
 development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: codica
-  pool: 5
-  username: jenya
-  password: jenya
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: codica_test
-  pool: 5
-  username: jenya
-  password: jenya
-
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  database: codica_production
-  username: jenya
-  password: jenya
+  <<: *default
+  database: codica
