@@ -82,7 +82,7 @@
 
 
 default: &default
-  adapter: postgresql
+  adapter: codica
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   encoding: unicode
   timeout: 5000
@@ -102,4 +102,4 @@ test:
 
 production:
   <<: *default
-  database: codica2
+  database: codica_production
