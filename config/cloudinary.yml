@@ -1,0 +1,12 @@
+production:
+  cloud_name: cloudair
+  api_key: "162959547696524"
+  api_secret: AQdl4Zxm7wzDN0gS-12jD5RjA-8
+  secure: true
+  cdn_subdomain: true
+development:
+  cloud_name: cloudair
+  api_key: "162959547696524"
+  api_secret: AQdl4Zxm7wzDN0gS-12jD5RjA-8
+  secure: true
+  cdn_subdomain: true
