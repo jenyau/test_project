@@ -5,6 +5,8 @@ class Doctor < ApplicationRecord
          :recoverable
 
 
+  mount_uploader :image, ImageUploader
+
   belongs_to :category, optional: true
   validates_uniqueness_of :name, :scope => :category_id
 
