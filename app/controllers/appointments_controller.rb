@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to appointment_path(@appointment)
     else
-      render :new
+      redirect_to doctor_path(@appointment.doctor), alert: "has more than 10 open appointments"
     end
   end
 
