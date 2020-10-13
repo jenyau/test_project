@@ -102,4 +102,4 @@ test:
 
 production:
   <<: *default
-  database: codica_production
+  database: codica3_production
