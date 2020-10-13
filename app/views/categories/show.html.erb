@@ -1,21 +1,19 @@
 <div class="container">
-  <div class="row">
-  <strong>Категория: <%= @category.name %></strong>
+  <h1 class="text-center">Категория: <%= @category.name %></h1>
+  <h2>Список докторов</h2>
 
-  </div>
-</div>
-<h4>Доктора:</h4>
-
-<% @category.doctors.each do |doctor| %>
-  <%= link_to "#{doctor.name}", doctor_path(doctor) %>
-  <% if current_user.present? %>
-    <%= form_with(model: Appointment.new, local: true) do |form| %>
-    <%= form.hidden_field :user_id, :value=>current_user.id %>
-      <%= form.hidden_field :doctor_id, :value=>doctor.id %>
-      <%= form.submit "Записаться"%>
+  <% @category.doctors.each do |doctor| %>
+    <h4><%= link_to "#{doctor.name}", doctor_path(doctor), class: "btn btn-light" %></h4>
+    <% if current_user.present? %>
+      <%= form_with(model: Appointment.new, local: true) do |form| %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :doctor_id, value: doctor.id %>
+        <%= form.submit "Записаться", class: "btn btn-success"%>
+      <% end %>
     <% end %>
+  <br>
   <% end %>
-<br><br>
-<% end %>
 
-<%= link_to "Назад", root_path %>
+  <%= link_to "Назад", root_path, class: "btn btn-primary" %>
+</div>
+

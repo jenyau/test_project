@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show, :index]
   resources :doctors, only: [:show, :index]
   resources :users, only: [:show]
-  resources :appointments, only: [:show, :new, :create, :update]
+  resources :appointments, only: [:show, :edit, :new, :create, :update]
 
   root 'welcome#index'
 end

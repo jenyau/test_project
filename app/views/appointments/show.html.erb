@@ -1,43 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Доктор:</strong>
-  <%= @appointment.doctor.name %>
-</p>
-<p>
-  <strong>Пользователь:</strong>
-  <%= @appointment.user.name %>
-</p>
-<strong>Статус: </strong>
-<%= @appointment.status ? "Запись открыта" : "Запись закрыта" %>
-
-  <h3>Рекомендации:</h3>
-
-  <% if @appointment.recommendation.present? %>
-    <%= @appointment.recommendation %>
-  <% else %>
-  <p>Пока нет никаких рекомендаций</p>
-  <% end %>
-
-
-<% if current_doctor.present? %>
-  <div class="field">
-    <% if can? :update, @appointment %>
-      <%= form_with(model: @appointment, local: true) do |form| %>
-        <%= form.label :recommendation, "Рекомендации" %>
-        <div class="field">
-          <%= form.label :recommendation, "Рекомендации" %>
-          <%= form.text_area :recommendation,
-            :rows => 13,
-            :cols => 50 ,
-            :maxlength => 240,
-            :autocomplete => :off %>
-        </div>
-        <br><br>
-        <% @appointment.status = false %>
-        <%= form.hidden_field :status, :value=> @appointment.status %>
-        <%= form.submit "Добавить" %>
-      <% end %>
-    <% end %>
+<div class="container">
+  <div class="text-center">
+    <h1>Запись номер <%= @appointment.id %></h1>
   </div>
-<% end %>
+  <h3>К доктору: <%= @appointment.doctor.name %></h3>
+  <h3>Пользователь: <%= @appointment.user.name %></h3>
+  <h4>Статус записи: <%= @appointment.status ? "Запись открыта" : "Запись закрыта" %></h4>
+  <br><br><br>
+  <h2>Рекомендации:<br>
+    <% if @appointment.recommendation.present? %>
+      <%= @appointment.recommendation %>
+    <% else %>
+      <p><h4>Пока нет никаких рекомендаций</h4></p>
+    <% end %>
+  </h2>
+  <br><br><br>
+
+  <% if current_doctor.present? %>
+    <div class="field">
+      <% if (can? :update, @appointment) && @appointment.status == true %>
+        <%= form_with(model: @appointment, local: true) do |form| %>
+            <%= form.text_area :recommendation,
+              :rows => 13,
+              :cols => 50 ,
+              :maxlength => 240,
+              :autocomplete => :off %>
+          </div>
+          <% @appointment.status = false %>
+          <%= form.hidden_field :status, :value=> @appointment.status %>
+          <%= form.submit "Добавить" %>
+        <% end %>
+        <% else %>
+          <% if can? :update, @appointment %><%= link_to "Редактировать", edit_appointment_path(@appointment), class: "btn btn-primary"%>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+

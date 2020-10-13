@@ -1,8 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="text-center">
+    <h1>Добро пожаловать в личный кабинет</h1>
+  </div>
+  <div>
+    <%= image_tag @user.image.url(:thumb) if @user.image.present? %>
+  </div>
+  <br><br>
+  <div>
+     <h4>Имя <%= @user.name %></h4>
+    <h4>E-mail <%= @user.email %></h4>
+    <h4>Номер телефона: <%= @user.phone_number %></h4>
+  </div>
+  <br><hr>
+  <div class="row">
+  <div class="col-md-6">
+    <h2>Открытые записи: </h2>
+    <% @user.appointments.where(status: true).each do |appointment| %>
+      <%= link_to "к доктору #{appointment.doctor.name}", appointment_path(appointment), :class=>"btn btn-light" %><br>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h2>Закрытые записи: </h2>
+    <% @user.appointments.where(status: false).each do |appointment| %>
+      <%= link_to "к доктору #{appointment.doctor.name}", appointment_path(appointment), :class=>"btn btn-light" %><br>
+    <% end %>
+  </div>
+</div>
+</div>
 
-<p>
-  <strong>Имя:</strong>
-  <%= @user.phone_number %>
-</p>
 
-<%= image_tag @user.image.url(:thumb) if @user.image.present? %>
+
