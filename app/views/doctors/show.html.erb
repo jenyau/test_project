@@ -4,6 +4,9 @@
   </div>
   <br>
   <div>
+    <%= image_tag @doctor.image.url(:thumb) if @doctor.image.present? %>
+  </div>
+  <div>
     <h4>Имя <%= @doctor.name %></h4>
     <h4>Категория доктора: <%= @doctor.category.name if @doctor.category.present? %></h4>
     <h4>E-mail <%= @doctor.email %></h4>
