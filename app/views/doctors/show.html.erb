@@ -1,25 +1,35 @@
-<p id="notice"><%= notice %></p>
+  <div class="container">
+  <div class="text-center">
+    <h1>Добро пожаловать в личный кабинет</h1>
+  </div>
+  <br>
+  <div>
+    <h4>Имя <%= @doctor.name %></h4>
+    <h4>Категория доктора: <%= @doctor.category.name if @doctor.category.present? %></h4>
+    <h4>E-mail <%= @doctor.email %></h4>
+    <h4>Номер телефона: <%= @doctor.phone_number %></h4>
+    <% if current_user.present? %>
+      <%= form_with(model: Appointment.new, local: true) do |form| %>
+      <%= form.hidden_field :user_id, :value=> current_user.id %>
+        <%= form.hidden_field :doctor_id, :value=> @doctor.id %>
+        <%= form.submit "Записаться на прием", class:"btn btn-info"%>
+      <% end %>
+    <% end %>
 
-<p>
-  <strong>Имя:</strong>
-  <%= @doctor.email %>
-</p>
-<p>
-<h1>Категория доктора</h1>
-<%= @doctor.category.name if @doctor.category.present? %>
-</p>
-<p>
-<h1>Открытые записи</h1>
-<% @doctor.appointments.each do |appointment| %>
-  <%= link_to "#{appointment.user.name}", appointment_path(appointment) %><br>
-<% end %>
-
-<% if current_user.present? %>
-  <%= form_with(model: Appointment.new, local: true) do |form| %>
-  <%= form.hidden_field :user_id, :value=> current_user.id %>
-    <%= form.hidden_field :doctor_id, :value=> @doctor.id %>
-    <%= form.submit "Записаться на прием"%>
-  <% end %>
-<% end %>
-
+  </div>
+  <br><hr>
+  <div class="row">
+  <div class="col-md-6">
+    <h2>Открытые записи: </h2>
+    <% @doctor.appointments.where(status: true).each do |appointment| %>
+      <%= link_to "пользователь #{appointment.user.name}", appointment_path(appointment), :class=>"btn btn-light" %><br>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h2>Закрытые записи: </h2>
+    <% @doctor.appointments.where(status: false).each do |appointment| %>
+      <%= link_to "пользователь #{appointment.user.name}", appointment_path(appointment), :class=>"btn btn-light" %><br>
+    <% end %>
+  </div>
+</div>
 </p>

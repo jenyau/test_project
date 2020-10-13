@@ -24,14 +24,13 @@ class Ability
         end
       end
       if user.class == Doctor
-        can :read, [Category, User]
+        can :read, [Category,User]
         can [:read, :update], Appointment do |appointment|
           appointment.doctor.id == user.id
         end
         can :read, Doctor do |profile|
           profile.id == user.id
         end
-
       end
 
 

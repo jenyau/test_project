@@ -8,23 +8,48 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <% if current_user.present? %>
-      <%= link_to "Выйти", destroy_user_session_path, method: :delete  %>
-      <% if can? :read, User %><%= link_to "личный кабинет", user_path(current_user) %> <%end%>
-    <% elsif current_doctor.present? %>
-    <% if can? :read, Doctor %><%= link_to "личный кабинет", doctor_path(current_doctor) %> <%end%>
-      <%= link_to "Выйти", destroy_doctor_session_path, method: :delete%>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "Navbar", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <% else %>
-        <%= link_to "Войти", new_user_session_path %>
-        <%= link_to "Войти как доктор", new_doctor_session_path %>
-    <% end %>
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
-   <p class="alert"><%= flash[:alert] %></p>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <% if current_user.present? %>
+            <li class="nav-item active">
+              <% if can? :read, User %><%= link_to "личный кабинет", user_path(current_user), class: "nav-link" %> <%end%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Категории врачей", categories_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% elsif current_doctor.present? %>
+            <li class="nav-item">
+              <% if can? :read, Doctor %><%= link_to "личный кабинет", doctor_path(current_doctor), class: "nav-link" %> <%end%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Выйти", destroy_doctor_session_path, method: :delete, class: "nav-link"%>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Войти", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Войти как доктор", new_doctor_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+  </nav>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= flash[:alert] %></p>
 
     <%= yield %>
+
   </body>
 </html>

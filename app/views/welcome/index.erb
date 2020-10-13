@@ -1,12 +1,26 @@
-<h1>Добро пожаловать в наше приложение</h1>
 
-<p><%= link_to "Войти как доктор", new_doctor_session_path %></p>
-<p><%= link_to "Войти", new_user_session_path, :class=>"btn btn-info" %></p>
-
-<h4>Список всех докторов</h4>
-<p><%= link_to "Доктора", doctors_path %></p>
-
-<h4>Выбор доктора по категории</h4>
-<% Category.all.each do |category| %>
-  <%= link_to "#{category.name}", category_path(category) %><br>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>Добро пожаловать в наше приложение</h1>
+      <hr>
+    </div>
+    <% unless current_user.present? || current_doctor.present? %>
+    <div class="col-md-3">
+      <%= link_to "Войти как пользователь", new_user_session_path, :class=>"btn btn-success" %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Войти как доктор", new_doctor_session_path, :class=>"btn btn-danger" %><br>
+    </div>
+    <% end %>
+    <br><br><br>
+    <div class="col-md-12">
+      <h2>Выбор доктора по категории:</h2>
+      <% Category.all.each do |category| %>
+        <%= link_to "#{category.name}", category_path(category), :class=> "btn btn-info" %>
+      <% end %>
+      <br><br>
+      <h4><%= link_to "Список всех докторов", doctors_path, :class=>"btn btn-warning" %></h4>
+    </div>
+  </div>
+</div>
