@@ -2,4 +2,4 @@
   <td><%= link_to "#{category.name}", category_path(category), class: "btn btn-light" %></td>
   <% if can? :update, category %><td><%= link_to 'Редактировать', edit_admin_category_path(category), class: "btn btn-primary" %></td><%end%>
   <% if can? :destroy, Category %><td><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-primary" %></td><%end%>
-  </tr>
+</tr>

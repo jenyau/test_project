@@ -17,40 +17,41 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%= link_to "Главная", root_path, class: "nav-link" %>
+        </li>
+        <% if current_user.present? %>
           <li class="nav-item active">
-            <%= link_to "Главная", root_path, class: "nav-link" %>
-            </li>
-          <% if current_user.present? %>
-            <li class="nav-item active">
-              <% if can? :read, User %><%= link_to "личный кабинет", user_path(current_user), class: "nav-link" %> <%end%>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Категории врачей", categories_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "nav-link" %>
-            </li>
-          <% elsif current_doctor.present? %>
-            <li class="nav-item">
-              <% if can? :read, Doctor %><%= link_to "личный кабинет", doctor_path(current_doctor), class: "nav-link" %> <%end%>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Выйти", destroy_doctor_session_path, method: :delete, class: "nav-link"%>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "Войти", new_user_session_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Войти как доктор", new_doctor_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
+            <% if can? :read, User %><%= link_to "личный кабинет", user_path(current_user), class: "nav-link" %> <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Категории врачей", categories_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% elsif current_doctor.present? %>
+          <li class="nav-item">
+            <% if can? :read, Doctor %><%= link_to "личный кабинет", doctor_path(current_doctor), class: "nav-link" %> <%end%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Выйти", destroy_doctor_session_path, method: :delete, class: "nav-link"%>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Войти", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Войти как доктор", new_doctor_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= flash[:alert] %></p>
     <%= cloudinary_js_config %>
+
     <%= yield %>
 
   </body>

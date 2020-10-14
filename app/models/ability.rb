@@ -10,7 +10,6 @@ class Ability
     end
   end
 
-
   def initialize(user)
     user ||= User.new
       if user.class == User
@@ -32,29 +31,5 @@ class Ability
           profile.id == user.id
         end
       end
-
-
-
-
-
-
-
-
-
-
-
-
-    # can :read, :all # permissions for every user, even if not logged in
-    # if user.present?  # additional permissions for logged in users (they can manage their posts)
-    #   can [:read, :create], Appointment
-
-
-    #   can :read, :all
-    #   if user.admin?  # additional permissions for administrators
-    #     can :manage, :all
-    #   end
-    # end
-
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
 end

@@ -19,10 +19,10 @@
           <div class="field">
             <%= form.label :recommendation, "Описание" %>
             <%= form.text_area :recommendation,
-                      rows: 13,
-                      cols: 50 ,
-                      maxlength: 240,
-                      autocomplete: :off, class:"form-control" %>
+              rows: 13,
+              cols: 50 ,
+              maxlength: 240,
+              autocomplete: :off, class:"form-control" %>
           </div>
         <% else %>
           <% @appointment.status = true %>

@@ -10,8 +10,6 @@ class Doctor < ApplicationRecord
   validates_length_of :name, maximum: 30
   validates_length_of :phone_number, maximum: 13
 
-
-
   mount_uploader :image, ImageUploader
 
   belongs_to :category, optional: true
