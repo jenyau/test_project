@@ -4,6 +4,13 @@ class Doctor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable
 
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :phone_number, presence: true
+  validates_length_of :name, maximum: 30
+  validates_length_of :phone_number, maximum: 13
+
+
 
   mount_uploader :image, ImageUploader
 

@@ -6,5 +6,11 @@ class User < ApplicationRecord
   has_many :appointments
   has_many :doctors, through: :appointments
 
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :phone_number, presence: true
+  validates_length_of :name, maximum: 30
+  validates_length_of :phone_number, maximum: 13
+
   mount_uploader :image, ImageUploader
 end
