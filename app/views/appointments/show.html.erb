@@ -26,7 +26,8 @@
               autocomplete: :off %>
           <% @appointment.status = false %>
           <%= form.hidden_field :status, value: @appointment.status %>
-          <%= form.submit "Добавить" %>
+          <br>
+          <%= form.submit "Добавить", class: "btn bnt-info" %>
         <% end %>
         <% else %>
           <% if can? :update, @appointment %><%= link_to "Редактировать", edit_appointment_path(@appointment), class: "btn btn-primary"%>
